@@ -6,7 +6,7 @@
 
 #define DEFAULT_INTERVAL 2
 
-typedef struct CommandOptions {
+typedef struct Command_Options {
     int interval;
     bool color;
     bool no_color;
@@ -15,7 +15,7 @@ typedef struct CommandOptions {
     bool version;
     bool exit_on_error;
     char* command;
-} CommandOptions;
+} Command_Options;
 
 static struct option long_options[] = {
     {"interval", required_argument, 0, 'i'},
@@ -27,12 +27,12 @@ static struct option long_options[] = {
     {0, 0, 0, 0}
 };
 
-CommandOptions* parse_commands(int argc, char** argv);
+Command_Options* parse_commands(int argc, char** argv);
 
 void print_usage(FILE *out, char** argv);
 
 void print_version(FILE* out, char** argv);
 
-void free_commands_options(CommandOptions* options);
+void free_commands_options(Command_Options* options);
 
 #endif

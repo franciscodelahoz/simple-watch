@@ -9,8 +9,8 @@
 #include "executor.h"
 #include "terminal.h"
 
-ScrollBuffer* init_scroll_buffer(char* command, int interval) {
-    ScrollBuffer* buffer = malloc(sizeof(ScrollBuffer));
+Scroll_Buffer* init_scroll_buffer(char* command, int interval) {
+    Scroll_Buffer* buffer = malloc(sizeof(Scroll_Buffer));
 
     buffer->lines = nullptr;
     buffer->total_lines = 0;
@@ -21,7 +21,7 @@ ScrollBuffer* init_scroll_buffer(char* command, int interval) {
     return buffer;
 }
 
-void add_line(ScrollBuffer* buffer, const char* line) {
+void add_line(Scroll_Buffer* buffer, const char* line) {
     buffer->lines = realloc(buffer->lines, sizeof(char*) * (buffer->total_lines + 1));
 
     if (buffer->lines == nullptr) {
@@ -47,7 +47,7 @@ void display_header(const char* command, const int interval) {
     attroff(COLOR_PAIR(2) | A_REVERSE);
 }
 
-void display_page(const ScrollBuffer* buffer) {
+void display_page(const Scroll_Buffer* buffer) {
     clear();
 
     display_header(buffer->command, buffer->interval);
@@ -72,21 +72,21 @@ void display_page(const ScrollBuffer* buffer) {
     refresh();
 }
 
-void scroll_up(ScrollBuffer* buffer) {
+void scroll_up(Scroll_Buffer* buffer) {
     if (buffer->current_offset > 0) {
         buffer->current_offset--;
         display_page(buffer);
     }
 }
 
-void scroll_down(ScrollBuffer* buffer) {
+void scroll_down(Scroll_Buffer* buffer) {
     if (buffer->current_offset + PAGE_HEIGHT_FALLBACK < buffer->total_lines) {
         buffer->current_offset++;
         display_page(buffer);
     }
 }
 
-void free_scroll_buffer(ScrollBuffer* buffer) {
+void free_scroll_buffer(Scroll_Buffer* buffer) {
     for (int i = 0; i < buffer->total_lines; i++) {
         free(buffer->lines[i]);
     }
@@ -95,7 +95,7 @@ void free_scroll_buffer(ScrollBuffer* buffer) {
     free(buffer);
 }
 
-void clear_command_executor(ScrollBuffer* buffer) {
+void clear_command_executor(Scroll_Buffer* buffer) {
     for (int i = 0; i < buffer->total_lines; i++) {
         free(buffer->lines[i]);
     }
@@ -107,7 +107,7 @@ void clear_command_executor(ScrollBuffer* buffer) {
     buffer->current_offset = 0;
 }
 
-void normalize_offset(ScrollBuffer* buffer) {
+void normalize_offset(Scroll_Buffer* buffer) {
     if (buffer->current_offset > buffer->total_lines - PAGE_HEIGHT_FALLBACK) {
         buffer->current_offset = buffer->total_lines > PAGE_HEIGHT_FALLBACK ?
             buffer->total_lines - PAGE_HEIGHT_FALLBACK : 0;
@@ -161,7 +161,7 @@ char* dynamic_strcat(char* dest, const char* src) {
     return dest;
 }
 
-int execute_command(ScrollBuffer* buffer, const char* command) {
+int execute_command(Scroll_Buffer* buffer, const char* command) {
     clear_command_executor(buffer);
 
     int pipe_fd[2];
@@ -253,7 +253,7 @@ int execute_command(ScrollBuffer* buffer, const char* command) {
     return 0;
 }
 
-void handle_command_exit_status(const CommandOptions* options, int exit_command_status) {
+void handle_command_exit_status(const Command_Options* options, int exit_command_status) {
     if (exit_command_status != 0 && options->exit_on_error) {
         const char* message = "Command exit with a non-zero status. Press any key to exit...";
         print_message(0, 0, message);

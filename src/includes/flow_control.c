@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-FlowState* init_flow_state() {
-    FlowState* flow_control = malloc(sizeof(FlowState));
+Flow_State* init_flow_state() {
+    Flow_State* flow_control = malloc(sizeof(Flow_State));
 
     if (flow_control == NULL) {
         perror("malloc");
@@ -24,7 +24,7 @@ FlowState* init_flow_state() {
     return flow_control;
 }
 
-int wait_for_event(FlowState* flow_control, int interval_in_seconds) {
+int wait_for_event(Flow_State* flow_control, int interval_in_seconds) {
     FD_ZERO(&flow_control->readfds);
     FD_SET(flow_control->pipe_fds[0], &flow_control->readfds);
 
@@ -40,7 +40,7 @@ int wait_for_event(FlowState* flow_control, int interval_in_seconds) {
     return result;
 }
 
-void free_flow_state(FlowState* flow_control) {
+void free_flow_state(Flow_State* flow_control) {
     close(flow_control->pipe_fds[0]);
     close(flow_control->pipe_fds[1]);
     free(flow_control);

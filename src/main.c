@@ -12,14 +12,14 @@
 #include "signal_handler.h"
 
 typedef struct {
-    ScrollBuffer* executor;
-    FlowState* flow_state;
+    Scroll_Buffer* executor;
+    Flow_State* flow_state;
     int write_fd;
-} ScrollThreadArgs;
+} Scroll_Thread_Args;
 
 void* input_control_thread(void* args) {
-    ScrollThreadArgs* scroll_args = (ScrollThreadArgs*) args;
-    ScrollBuffer* executor = scroll_args->executor;
+    Scroll_Thread_Args* scroll_args = (Scroll_Thread_Args*) args;
+    Scroll_Buffer* executor = scroll_args->executor;
 
     int write_fd = scroll_args->write_fd;
 
@@ -73,7 +73,7 @@ void* input_control_thread(void* args) {
 }
 
 int main(int argc, char** argv) {
-    CommandOptions* options = parse_commands(argc, argv);
+    Command_Options* options = parse_commands(argc, argv);
 
     if (options == nullptr) {
         printf("Failed to parse command options\n");
@@ -97,7 +97,7 @@ int main(int argc, char** argv) {
     register_signal_handlers(SIGTERM, handle_stop_signal);
 
     Terminal* terminal = init_terminal();
-    ScrollBuffer* executor = init_scroll_buffer(options->command, options->interval);
+    Scroll_Buffer* executor = init_scroll_buffer(options->command, options->interval);
 
     configure_terminal();
 
@@ -106,10 +106,10 @@ int main(int argc, char** argv) {
         exit_with_code(EXIT_FAILURE);
     }
 
-    FlowState* flow_state = init_flow_state();
+    Flow_State* flow_state = init_flow_state();
     int exit_status = 0;
 
-    ScrollThreadArgs scroll_args = { executor, flow_state, flow_state->pipe_fds[1] };
+    Scroll_Thread_Args scroll_args = { executor, flow_state, flow_state->pipe_fds[1] };
     pthread_t scroll_thread;
 
     if (pthread_create(&scroll_thread, nullptr, input_control_thread, &scroll_args) != 0) {

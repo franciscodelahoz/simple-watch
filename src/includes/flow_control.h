@@ -5,18 +5,18 @@
 
 #include "executor.h"
 
-typedef struct FlowState {
+typedef struct Flow_State {
     bool exit_execution;
     bool pause_execution;
     struct timeval timeout;
     fd_set readfds;
     int pipe_fds[2];
-} FlowState;
+} Flow_State;
 
-FlowState* init_flow_state();
+Flow_State* init_flow_state();
 
-int wait_for_event(FlowState* flow_state, int interval_in_seconds);
+int wait_for_event(Flow_State* flow_state, int interval_in_seconds);
 
-void free_flow_state(FlowState* flow_state);
+void free_flow_state(Flow_State* flow_state);
 
 #endif

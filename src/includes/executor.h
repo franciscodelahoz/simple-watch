@@ -14,22 +14,22 @@ typedef struct ScrollBuffer {
     int current_offset;
     char* command;
     int interval;
-} ScrollBuffer;
+} Scroll_Buffer;
 
-ScrollBuffer* init_scroll_buffer(char* command, int interval);
+Scroll_Buffer* init_scroll_buffer(char* command, int interval);
 
-void add_line(ScrollBuffer* buffer, const char* line);
+void add_line(Scroll_Buffer* buffer, const char* line);
 
-void display_page(const ScrollBuffer* buffer);
+void display_page(const Scroll_Buffer* buffer);
 
-void scroll_up(ScrollBuffer* buffer);
+void scroll_up(Scroll_Buffer* buffer);
 
-void scroll_down(ScrollBuffer* buffer);
+void scroll_down(Scroll_Buffer* buffer);
 
-void free_scroll_buffer(ScrollBuffer* buffer);
+void free_scroll_buffer(Scroll_Buffer* buffer);
 
-int execute_command(ScrollBuffer* buffer, const char* command);
+int execute_command(Scroll_Buffer* buffer, const char* command);
 
-void handle_command_exit_status(const CommandOptions* options, int exit_command_status);
+void handle_command_exit_status(const Command_Options* options, int exit_command_status);
 
 #endif

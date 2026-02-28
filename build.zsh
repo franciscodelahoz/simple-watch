@@ -31,7 +31,7 @@ clang \
 
 # ./bin/main -v
 # ./bin/main --interval 1 top
-# ./bin/main --interval 10 ls -la /Users/franciscodelahoz
-./bin/main --interval 1 date
+./bin/main --interval 10 ls -la /Users/franciscodelahoz
+# ./bin/main --interval 1 date
 # ./bin/main -e $PWD/test.sh
 # ./bin/main $PWD/test.sh

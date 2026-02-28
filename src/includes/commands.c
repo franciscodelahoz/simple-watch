@@ -31,11 +31,11 @@ char* get_command(int optind, const int argc, char** argv) {
     return command;
 }
 
-CommandOptions* parse_commands(const int argc, char** argv) {
-    CommandOptions* options = malloc(sizeof(CommandOptions));
+Command_Options* parse_commands(const int argc, char** argv) {
+    Command_Options* options = malloc(sizeof(Command_Options));
 
     if (options == nullptr) {
-        printf("Failed to allocate memory for CommandOptions");
+        printf("Failed to allocate memory for Command_Options");
         return nullptr;
     }
 
@@ -125,7 +125,7 @@ void print_version(FILE* out, char** argv) {
     fprintf(out, "%s - Version 0.1.0\n", argv[0]);
 }
 
-void free_commands_options(CommandOptions* options) {
+void free_commands_options(Command_Options* options) {
     if (options == nullptr) {
         return;
     }

@@ -1,7 +1,7 @@
 # build environment
 BUILD_PATH = build
 OBJECTS_PATH = objects
-EXECUTABLE_PATH = $(BUILD_PATH)/hook
+EXECUTABLE_PATH = $(BUILD_PATH)/swatch
 
 # install environment
 PREFIX = /usr/local
