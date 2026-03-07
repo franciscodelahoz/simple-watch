@@ -109,8 +109,7 @@ void clear_command_executor(Scroll_Buffer* buffer) {
 
 void normalize_offset(Scroll_Buffer* buffer) {
     if (buffer->current_offset > buffer->total_lines - PAGE_HEIGHT_FALLBACK) {
-        buffer->current_offset = buffer->total_lines > PAGE_HEIGHT_FALLBACK ?
-            buffer->total_lines - PAGE_HEIGHT_FALLBACK : 0;
+        buffer->current_offset = buffer->total_lines > PAGE_HEIGHT_FALLBACK ? buffer->total_lines - PAGE_HEIGHT_FALLBACK : 0;
     }
 }
 

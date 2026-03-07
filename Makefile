@@ -1,6 +1,6 @@
 # build environment
 BUILD_PATH = build
-OBJECTS_PATH = objects
+OBJECTS_PATH = $(BUILD_PATH)/objects
 EXECUTABLE_PATH = $(BUILD_PATH)/swatch
 
 # install environment
@@ -29,7 +29,7 @@ all: $(EXECUTABLE_PATH)
 # Cleaning rule
 clean:
 	@echo "Cleaning..."
-	@rm -rf $(BUILD_PATH) $(OBJECTS_PATH)
+	@rm -rf $(BUILD_PATH)
 
 # Linking the executable
 $(EXECUTABLE_PATH): $(OBJECTS) | $(BUILD_PATH)

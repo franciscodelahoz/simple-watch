@@ -18,18 +18,18 @@ typedef struct Command_Options {
 } Command_Options;
 
 static struct option long_options[] = {
-    {"interval", required_argument, 0, 'i'},
-    {"color", no_argument, 0, 'c'},
-    {"no-color", no_argument, 0, 'n'},
-    {"help", no_argument, 0, 'h'},
-    {"version", no_argument, 0, 'v'},
-    {"exit-on-error", no_argument, 0, 'e'},
-    {0, 0, 0, 0}
+    { "interval", required_argument, 0, 'i' },
+    { "color", no_argument, 0, 'c' },
+    { "no-color", no_argument, 0, 'n' },
+    { "help", no_argument, 0, 'h' },
+    { "version", no_argument, 0, 'v' },
+    { "exit-on-error", no_argument, 0, 'e' },
+    { 0, 0, 0, 0 }
 };
 
 Command_Options* parse_commands(int argc, char** argv);
 
-void print_usage(FILE *out, char** argv);
+void print_usage(FILE* out, char** argv);
 
 void print_version(FILE* out, char** argv);
 

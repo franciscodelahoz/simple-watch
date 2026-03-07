@@ -19,7 +19,7 @@ Flow_State* init_flow_state() {
 
     flow_control->exit_execution = false;
     flow_control->pause_execution = false;
-    flow_control->timeout = (struct timeval){ 0 };
+    flow_control->timeout = (struct timeval) { 0 };
 
     return flow_control;
 }

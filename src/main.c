@@ -65,7 +65,6 @@ void* input_control_thread(void* args) {
             default: {
                 break;
             }
-
         }
 
         usleep(10000);

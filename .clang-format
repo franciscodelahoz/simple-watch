@@ -1,0 +1,12 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+UseTab: Never
+ColumnLimit: 0
+
+PointerAlignment: Left
+BreakBeforeBraces: Attach
+SpaceAfterCStyleCast: true
+IndentCaseLabels: true
+SortIncludes: Never
+IncludeBlocks: Preserve
+Cpp11BracedListStyle: false

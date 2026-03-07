@@ -30,10 +30,10 @@ void exit_with_code(const int code) {
 }
 
 void gracefully_exit(void) {
-   exit_with_code(EXIT_SUCCESS);
+    exit_with_code(EXIT_SUCCESS);
 }
 
-void print_message(const int x, const int y, const char *message) {
+void print_message(const int x, const int y, const char* message) {
     clear();
     mvprintw(x, y, "%s", message);
     refresh();
